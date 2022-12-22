@@ -6,8 +6,9 @@ public class GroupAdmin implements Sender {
     private List<Member> members = new ArrayList<>();
     private UndoableStringBuilder document;
 
-    public GroupAdmin(String document) {
-        this.document = new UndoableStringBuilder(document);
+    public GroupAdmin(String str) {
+        this.document = new UndoableStringBuilder(str);
+        this.document.push(str);
     }
 
     public UndoableStringBuilder getDocument() {

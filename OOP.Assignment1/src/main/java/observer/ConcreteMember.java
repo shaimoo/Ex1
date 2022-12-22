@@ -15,8 +15,6 @@ public class ConcreteMember implements Member {
 
     @Override
     public String toString() {
-        return "ConcreteMember{" +
-                "document='" + document + '\'' +
-                '}';
+        return document;
     }
 }
