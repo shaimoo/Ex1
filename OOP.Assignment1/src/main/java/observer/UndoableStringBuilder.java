@@ -25,7 +25,10 @@ public class UndoableStringBuilder {
         public void append(String str){
             this.my_string.append(str);
             String temp = my_string.toString();
-            my_stack.add(temp);
+            this.my_stack.add(temp);
+        }
+        public  void push(String str){
+            this.my_stack.push(str);
         }
 
         /**
@@ -44,8 +47,9 @@ public class UndoableStringBuilder {
         public void undo(){
             if(my_stack.peek() != null){
                 this.my_string = new StringBuilder();
-                my_stack.pop();
-                my_string.append(my_stack.peek());}
+                this.my_stack.pop();
+                my_string.append(my_stack.peek());
+                                        }
             else{
                 System.out.println("there is no previous sentence");
             }
@@ -60,7 +64,7 @@ public class UndoableStringBuilder {
             if(start<=end && my_string.length()>=end &&start>=0){
                 my_string.delete(start,end);
                 String temp = my_string.toString();
-                my_stack.add(temp);}
+                this.my_stack.add(temp);}
             else {
                 System.out.println("the start index or the end is not valid");
             }
@@ -75,7 +79,7 @@ public class UndoableStringBuilder {
             if(offset>=0 && offset<=my_string.length() ){
                 my_string.insert(offset ,str);
                 String temp = my_string.toString();
-                my_stack.add(temp);
+                this.my_stack.add(temp);
             }  else {
                 System.out.println("the offset index is not valid");
             }
@@ -93,7 +97,7 @@ public class UndoableStringBuilder {
                 my_string.delete(start,end);
                 my_string.insert(start,str);
                 String temp = my_string.toString();
-                my_stack.add(temp);}
+                this.my_stack.add(temp);}
             else {
                 System.out.println("the start index or the end is not valid");
             }
