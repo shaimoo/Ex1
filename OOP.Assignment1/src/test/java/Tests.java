@@ -9,7 +9,7 @@ public class Tests {
     public static final Logger logger = LoggerFactory.getLogger(Tests.class);
     // stub method to check external dependencies compatibility
     @Test
-    public void test(){
+    public void test() {
         String s1 = "Alice";
         String s2 = "Bob";
 
@@ -21,6 +21,7 @@ public class Tests {
 
         logger.info(() -> JvmUtilities.jvmInfo());
     }
+
     @Test
     public void testInsert() {
         // Create a GroupAdmin instance with an initial document
@@ -66,10 +67,25 @@ public class Tests {
     public void testDelete() {
         // Create a GroupAdmin instance with an initial document
         GroupAdmin admin = new GroupAdmin("Initial document");
-
         // Create a ConcreteMember instance
         ConcreteMember member = new ConcreteMember();
 
         // Register the ConcreteMember instance with the Group
+        admin.register(member);
+        admin.delete(0,8);
+        assertEquals(admin.getDocument().toString(), "document");
+    }
+
+    @Test
+    public void testUndo() {
+        // Create a GroupAdmin instance with an initial document
+        GroupAdmin admin = new GroupAdmin("Initial document");
+        // Create a ConcreteMember instance
+        ConcreteMember member = new ConcreteMember();
+        admin.register(member);
+        admin.insert(0, "Inserted text at the beginning");
+        admin.undo();
+        assertEquals(admin.getDocument().toString(), "Initial document");
     }
 }
+
