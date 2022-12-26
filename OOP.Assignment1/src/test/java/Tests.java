@@ -24,8 +24,8 @@ public class Tests {
 
     @Test
     public void testInsert() {
-        // Create a GroupAdmin instance with an initial document
-        GroupAdmin admin = new GroupAdmin("Initial document");
+        // Create a GroupAdmin instance with an alice
+        GroupAdmin admin = new GroupAdmin("alice");
 
         // Create a ConcreteMember instance
         ConcreteMember member = new ConcreteMember();
@@ -40,15 +40,15 @@ public class Tests {
         admin.register(member2);
         admin.append("bob");
         // Verify that the document has the expected value after the insert operation
-        assertEquals(admin.getDocument().toString(), "Inserted text at the beginningInitial documentbob");
+        assertEquals(admin.getDocument().toString(), "Inserted text at the beginningalicebob");
         System.out.println(member.toString());
         System.out.println(member2.toString());
     }
 
     @Test
     public void testAppend() {
-        // Create a GroupAdmin instance with an initial document
-        GroupAdmin admin = new GroupAdmin("Initial document");
+        // Create a GroupAdmin instance with an bob
+        GroupAdmin admin = new GroupAdmin("bob");
 
         // Create a ConcreteMember instance
         ConcreteMember member = new ConcreteMember();
@@ -60,7 +60,7 @@ public class Tests {
         admin.append("Appended text at the end");
 
         // Verify that the document has the expected value after the append operation
-        assertEquals(admin.getDocument().toString(), "Initial documentAppended text at the end");
+        assertEquals(admin.getDocument().toString(), "bobAppended text at the end");
     }
 
     @Test
@@ -78,14 +78,54 @@ public class Tests {
 
     @Test
     public void testUndo() {
-        // Create a GroupAdmin instance with an initial document
-        GroupAdmin admin = new GroupAdmin("Initial document");
+        // Create a GroupAdmin instance with an shai
+        GroupAdmin admin = new GroupAdmin("shai");
         // Create a ConcreteMember instance
         ConcreteMember member = new ConcreteMember();
         admin.register(member);
         admin.insert(0, "Inserted text at the beginning");
         admin.undo();
-        assertEquals(admin.getDocument().toString(), "Initial document");
+        assertEquals(admin.getDocument().toString(), "shai");
     }
+
+    @Test
+    public void testUpdate() {
+        // Create a GroupAdmin instance with an nir
+        GroupAdmin admin = new GroupAdmin("nir");
+
+        // Create a ConcreteMember instance
+        ConcreteMember member = new ConcreteMember();
+
+        // Register the ConcreteMember instance with the GroupAdmin instance
+        admin.register(member);
+
+        // Perform some operations on the document
+        admin.insert(0, "Inserted text at the beginning ");
+        admin.append(" Appended text at the end");
+
+        // Verify that the ConcreteMember instance has the expected document copy
+        assertEquals(member.toString(), "Inserted text at the beginning nir Appended text at the end");
+    }
+    @Test
+    public void testMultipleUpdates() {
+        // Create a GroupAdmin instance with an test
+        GroupAdmin admin = new GroupAdmin("test");
+
+        // Create a ConcreteMember instance
+        ConcreteMember member = new ConcreteMember();
+
+        // Register the ConcreteMember instance with the GroupAdmin instance
+        admin.register(member);
+
+        // Perform some operations on the document
+        admin.insert(0, "Inserted text at the beginning");
+        admin.append("Appended text at the end");
+        admin.delete(5, 10);
+        admin.undo();
+
+        // Verify that the ConcreteMember instance has the expected document copy
+        assertEquals(member.toString(), "Inserted text at the beginningtestAppended text at the end");
+    }
+
 }
 
