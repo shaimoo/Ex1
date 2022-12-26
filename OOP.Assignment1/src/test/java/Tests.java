@@ -43,6 +43,16 @@ public class Tests {
         assertEquals(admin.getDocument().toString(), "Inserted text at the beginningalicebob");
         System.out.println(member.toString());
         System.out.println(member2.toString());
+
+        logger.info(()->JvmUtilities.objectFootprint(member));
+
+        logger.info(()->JvmUtilities.objectFootprint(member,member2));
+
+        logger.info(()->JvmUtilities.objectFootprint(member,member2,admin));
+
+        logger.info(()->JvmUtilities.objectTotalSize(member));
+
+        logger.info(() -> JvmUtilities.jvmInfo());
     }
 
     @Test
@@ -61,6 +71,13 @@ public class Tests {
 
         // Verify that the document has the expected value after the append operation
         assertEquals(admin.getDocument().toString(), "bobAppended text at the end");
+        logger.info(()->JvmUtilities.objectFootprint(member));
+
+        logger.info(()->JvmUtilities.objectFootprint(member,admin));
+
+        logger.info(()->JvmUtilities.objectTotalSize(member));
+
+        logger.info(() -> JvmUtilities.jvmInfo());
     }
 
     @Test
@@ -74,6 +91,14 @@ public class Tests {
         admin.register(member);
         admin.delete(0,8);
         assertEquals(admin.getDocument().toString(), "document");
+
+        logger.info(()->JvmUtilities.objectFootprint(member));
+
+        logger.info(()->JvmUtilities.objectFootprint(member,admin));
+
+        logger.info(()->JvmUtilities.objectTotalSize(member));
+
+        logger.info(() -> JvmUtilities.jvmInfo());
     }
 
     @Test
@@ -86,6 +111,14 @@ public class Tests {
         admin.insert(0, "Inserted text at the beginning");
         admin.undo();
         assertEquals(admin.getDocument().toString(), "shai");
+
+        logger.info(()->JvmUtilities.objectFootprint(member));
+
+        logger.info(()->JvmUtilities.objectFootprint(member,admin));
+
+        logger.info(()->JvmUtilities.objectTotalSize(member));
+
+        logger.info(() -> JvmUtilities.jvmInfo());
     }
 
     @Test
@@ -105,6 +138,14 @@ public class Tests {
 
         // Verify that the ConcreteMember instance has the expected document copy
         assertEquals(member.toString(), "Inserted text at the beginning nir Appended text at the end");
+
+        logger.info(()->JvmUtilities.objectFootprint(member));
+
+        logger.info(()->JvmUtilities.objectFootprint(member,admin));
+
+        logger.info(()->JvmUtilities.objectTotalSize(member));
+
+        logger.info(() -> JvmUtilities.jvmInfo());
     }
     @Test
     public void testMultipleUpdates() {
@@ -125,6 +166,14 @@ public class Tests {
 
         // Verify that the ConcreteMember instance has the expected document copy
         assertEquals(member.toString(), "Inserted text at the beginningtestAppended text at the end");
+        
+        logger.info(()->JvmUtilities.objectFootprint(member));
+
+        logger.info(()->JvmUtilities.objectFootprint(member,admin));
+
+        logger.info(()->JvmUtilities.objectTotalSize(member));
+
+        logger.info(() -> JvmUtilities.jvmInfo());
     }
 
 }
