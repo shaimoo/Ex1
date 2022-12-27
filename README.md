@@ -36,7 +36,7 @@ notify members (Observers) in any change that happend.
 
 # How to Run:
 Firstly, to run this project, download the files from the github.
-Secondly, open the project in Intellij or any different IDE.
+Secondly, open the pom.xml file from Intellij or any different IDE.
 Open the Test class and Run the file.
 
 
