@@ -2,8 +2,8 @@
 # Extend StdringBuilder 
 
 
-- Nir Meir 313229106
-- Shai Moshe 318160108
+- Nir Meir 
+- Shai Moshe 
 
 # About the Project:
 This is task 2 in our OOP course.
