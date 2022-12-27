@@ -2,7 +2,7 @@
 # Extend StdringBuilder 
 
 
-- Nir Meir 313229106, 
+- Nir Meir 313229106
 - Shai Moshe 318160108
 
 # About the Project:
